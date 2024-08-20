@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include("./partials/head.ejs") %>
+  <link rel="stylesheet" href="/styles/signup.css">
+    <title>Signup</title>
+</head>
+<body data-bs-theme="dark">
+    <div class="container center full-h" style="align-items: start;">
+      <div class="form_ctnr column">
+        <div class="full-w center" style="margin-bottom: 20px;"><img src="/assets/logo.png" alt="Logo"></div>
+        <h2>Sign Up</h2>
+        <p>Create an account and start your journey.</p>
+        <form class="row g-3">
+          <div class="col-md-12">
+            <label for="inputName" class="form-label">Name</label>
+            <input type="text" class="form-control" id="inputName" placeholder="Enter your name">
+          </div>
+            <div class="col-md-12">
+              <label for="inputEmail4" class="form-label">Email</label>
+              <input type="email" class="form-control" id="inputEmail4" placeholder="Enter your email">
+            </div>
+            <div class="col-md-6">
+              <label for="inputPassword" class="form-label">Password</label>
+              <input type="password" class="form-control" id="inputPassword" placeholder="Enter password">
+            </div>
+            <div class="col-md-6">
+              <label for="inputPassword2" class="form-label">Re-enter password</label>
+              <input type="password" class="form-control" id="inputPassword2" placeholder="Re-enter your password">
+            </div>
+            <div class="col-md-12">
+              <label for="inputProfileImage" class="form-label">Profile image</label>
+              <input type="file" class="form-control" id="inputProfileImage" placeholder="Upload profile image">
+            </div>
+            <div class="col-12">
+              <button type="submit" class="signup_btn">Sign up</button>
+            </div>
+          </form>
+          <div class="col-12 center" style="margin-top: 15px;">Already have an account <a href="/login" style="margin-left: 7px;">Login here</a></div>
+      </div>
+    </div>
+    <%- include("./partials/cscripts.ejs") %>
+</body>
+</html>

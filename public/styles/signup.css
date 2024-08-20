@@ -1,0 +1,40 @@
+.form_ctnr {
+    width: 100%;
+    max-width: 400px;
+    font-size: 13px;
+    padding: 30px 0;
+    margin: 15px;
+}
+
+.form_ctnr img:nth-child(1) {
+    filter: invert(1);
+    height: 50px;
+}
+
+.signup_btn {
+    margin-top: 13px;
+    padding: 8px 38px;
+    width: fit-content;
+    background: transparent;
+    cursor: pointer;
+    transition: 0.3s;
+    font-family: Alexandria;
+    border: 2px solid white;
+    border-radius: 25px;
+    color: white;
+}
+
+.signup_btn:hover {
+    background-color: white;
+    color: darkblue;
+}
+
+::placeholder, input[type = "file"] {
+    font-size: 13px;
+}
+
+@media only screen and (max-width: 600px) {
+    .container {
+        align-items: start;
+    }
+}

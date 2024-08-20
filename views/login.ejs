@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include("./partials/head.ejs") %>
+  <link rel="stylesheet" href="/styles/signup.css">
+    <title>Login</title>
+</head>
+<body data-bs-theme="dark">
+    <div class="container center full-h">
+      <div class="form_ctnr column">
+        <div class="full-w center" style="margin-bottom: 20px;"><img src="/assets/logo.png" alt="Logo"></div>
+        <h2>Login</h2>
+        <p>Login to continue your journey.</p>
+        <form class="row g-3">
+          <div class="col-md-12">
+            <label for="inputEmail4" class="form-label">Email</label>
+            <input type="email" class="form-control" id="inputEmail4" placeholder="Enter your email">
+          </div>
+          <div class="col-md-12">
+            <label for="inputPassword" class="form-label">Password</label>
+            <input type="password" class="form-control" id="inputPassword" placeholder="Enter password">
+          </div>
+          <% if (locals.error) { %>
+            <div class="col-12" style="margin-top: 15px; color: crimson;">Some error occured!</div>
+          <% } %>
+          <div class="col-12">
+            <button type="submit" class="signup_btn">Login</button>
+          </div>
+        </form>
+        <div class="col-12 center" style="margin-top: 15px;">Don't have an account <a href="/signup" style="margin-left: 7px;">Register here</a></div>
+      </div>
+    </div>
+    <%- include("./partials/cscripts.ejs") %>
+</body>
+</html>
