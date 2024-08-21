@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include("./partials/head.ejs") %>
+    <link rel="stylesheet" href="/styles/add-blog.css" />
+    <title>Add new blog</title>
+  </head>
+  <body data-bs-theme="dark">
+    <%- include("./partials/nav.ejs") %>
+    <div class="full-w center column form_ctnr">
+      <h1>Add Blogs</h1>
+      <% if (locals.error) { %>
+        <div class="mt-4" style="color: crimson;"><%= error %></div>
+      <% } %>
+      <form id="blog_form" class="row m-2" method="post" action="/blogs/addblog">
+        <div class="col-md-4">
+          <div class="mb-3">
+            <label for="title" class="form-label">Title of blog</label>
+            <input type="text" class="form-control" id="title" name="title" placeholder="Enter blog title" value="<% if (locals.blog_title) { %><%= blog_title %><% } %>"/>
+          </div>
+          <div class="mb-3">
+            <label for="coverImage" class="form-label">Upload Cover Image <small>(Optional)</small></label>
+            <input class="form-control" type="file" id="coverImage" name="coverImage">
+          </div>
+        </div>
+        <div class="col-md-7 blog_body">
+            <label for="body" class="form-label">Add blog content here</label>
+            <textarea class="form-control" id="body" name="body" maxlength="1000"><% if (locals.blog_body) { %><%= blog_body %><% } %></textarea>
+            <div class="charCount"><span id="charCount">0</span>/1000</div>
+        </div>
+        <div class="m-1 center post_btn">
+            <button type="submit" class="btn btn-primary post_btn_btn">Post Blog</button>
+        </div>
+      </form>
+    </div>
+    <%- include("./partials/cscripts.ejs") %>
+    <script>
+        let blogText = document.querySelector("#body");
+        document.getElementById("charCount").innerText = blogText.value.length;
+        function updateCharCount() {
+            const charCount = blogText.value.length;
+            document.getElementById("charCount").innerText = charCount;
+        }
+        blogText.addEventListener('input', updateCharCount);
+    </script>
+  </body>
+</html>

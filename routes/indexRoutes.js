@@ -1,6 +1,7 @@
 const { Router } = require("express")
-const { handleSignupPage, handleLoginPage } = require("../controllers/indexController")
+const { handleSignupPage, handleLoginPage, handleAddBlogPage } = require("../controllers/indexController")
 const userRoute = require("./userRoute")
+const blogRoute = require("./blogRoute")
 const { connectToMongo } = require("../config/db")
 const dotenv = require('dotenv');
 dotenv.config()
@@ -16,13 +17,15 @@ connectToMongo(process.env.MONGO_URI)
   })
 
 router.use("/user", userRoute)
+router.use("/blogs", blogRoute)
 
 router.get("/", (req, res) => {
     return res.render("home", {
-        user: null
+        user: req.user ? req.user.name : null
     })
 })
 router.get("/signup", handleSignupPage)
 router.get("/login", handleLoginPage)
+router.get("/add-blog", handleAddBlogPage)
 
 module.exports = router

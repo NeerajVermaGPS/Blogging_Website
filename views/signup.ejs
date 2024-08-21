@@ -8,21 +8,22 @@
 <body data-bs-theme="dark">
     <div class="container center full-h" style="align-items: start;">
       <div class="form_ctnr column">
-        <div class="full-w center" style="margin-bottom: 20px;"><img src="/assets/logo.png" alt="Logo"></div>
+        <div class="full-w center mb-4"><img src="/assets/logo.png" alt="Logo"></div>
         <h2>Sign Up</h2>
         <p>Create an account and start your journey.</p>
-        <form class="row g-3">
+        <form class="row g-3" method="post" action="/user/signup">
           <div class="col-md-12">
-            <label for="inputName" class="form-label">Name</label>
-            <input type="text" class="form-control" id="inputName" placeholder="Enter your name">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name">
           </div>
             <div class="col-md-12">
-              <label for="inputEmail4" class="form-label">Email</label>
-              <input type="email" class="form-control" id="inputEmail4" placeholder="Enter your email">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email">
+              <div id="emailHelp" class="form-text">We'll never share your email with anyone!</div>
             </div>
             <div class="col-md-6">
-              <label for="inputPassword" class="form-label">Password</label>
-              <input type="password" class="form-control" id="inputPassword" placeholder="Enter password">
+              <label for="password" class="form-label">Password</label>
+              <input type="password" class="form-control" id="password" name="password" placeholder="Enter password">
             </div>
             <div class="col-md-6">
               <label for="inputPassword2" class="form-label">Re-enter password</label>
@@ -32,11 +33,14 @@
               <label for="inputProfileImage" class="form-label">Profile image</label>
               <input type="file" class="form-control" id="inputProfileImage" placeholder="Upload profile image">
             </div>
+            <% if (locals.error) { %>
+              <div class="col-12 mt-4" style="color: crimson;"><%= error %></div>
+            <% } %>
             <div class="col-12">
               <button type="submit" class="signup_btn">Sign up</button>
             </div>
           </form>
-          <div class="col-12 center" style="margin-top: 15px;">Already have an account <a href="/login" style="margin-left: 7px;">Login here</a></div>
+          <div class="col-12 center mt-4">Already have an account <a href="/login" style="margin-left: 7px;">Login here</a></div>
       </div>
     </div>
     <%- include("./partials/cscripts.ejs") %>

@@ -16,9 +16,8 @@ const userSignupValidator = {
             errorMessage: 'Password should be at least 8 chars',
         },
     },
-    profileImage: true,
-    role: {
-        isString: true
+    profileImage: {
+        optional: {checkFalsy: true}
     }
 }
 

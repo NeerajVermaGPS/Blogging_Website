@@ -1,0 +1,43 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+#blog_form {
+    column-gap: 10px;
+    max-height: 400px;
+    height: 100%;
+    width: 90%;
+    justify-content: space-between;
+}
+
+.blog_body {
+    height: 85%;
+    position: relative;
+}
+
+.post_btn {
+    height: fit-content;
+}
+
+textarea, input, input[type = file] {
+    font-size: 13px !important;
+}
+
+textarea {
+    height: calc(100% - 50px);
+}
+
+.post_btn_btn {
+    min-width: 200px;
+    border-radius: 2px !important;
+}
+
+.form_ctnr {
+    height: calc(100% - 60px);
+}
+
+.charCount {
+    color: white;
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}

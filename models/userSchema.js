@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
-const { hashPassword } = require("../utils/hashing")
+const { hashPassword, comparePassword } = require("../utils/hashing")
+const { setTokenForUser } = require("../utils/authService")
 
 const userSchema = mongoose.Schema({
     name: {
@@ -32,6 +33,13 @@ userSchema.pre("save", function (next) {
     if(!user.isModified("password")) return;
     this.password = hashPassword(user.password)
     next()
+})
+
+userSchema.static("validateLoginAndGenerateToken", async function (email, password) {
+    const user = await this.findOne({ email })
+    if(!user) throw new Error("User not found!")
+    if(!comparePassword(password, user.password)) throw new Error("Password is incorrect!")
+    return setTokenForUser(user)
 })
 
 const User = mongoose.model("User", userSchema)
