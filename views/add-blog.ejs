@@ -12,7 +12,7 @@
       <% if (locals.error) { %>
         <div class="mt-4" style="color: crimson;"><%= error %></div>
       <% } %>
-      <form id="blog_form" class="row m-2" method="post" action="/blogs/addblog">
+      <form id="blog_form" class="row m-2" method="post" action="/blogs/addblog" enctype="multipart/form-data">
         <div class="col-md-4">
           <div class="mb-3">
             <label for="title" class="form-label">Title of blog</label>
@@ -25,8 +25,8 @@
         </div>
         <div class="col-md-7 blog_body">
             <label for="body" class="form-label">Add blog content here</label>
-            <textarea class="form-control" id="body" name="body" maxlength="1000"><% if (locals.blog_body) { %><%= blog_body %><% } %></textarea>
-            <div class="charCount"><span id="charCount">0</span>/1000</div>
+            <textarea class="form-control" id="body" name="body" maxlength="3000"><% if (locals.blog_body) { %><%= blog_body %><% } %></textarea>
+            <div class="charCount"><span id="charCount">0</span>/3000</div>
         </div>
         <div class="m-1 center post_btn">
             <button type="submit" class="btn btn-primary post_btn_btn">Post Blog</button>

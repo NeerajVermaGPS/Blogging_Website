@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include("./partials/head.ejs") %>
+    <link rel="stylesheet" href="/styles/add-blog.css">
+    <title>Document</title>
+</head>
+<body data-bs-theme="dark">
+    <%- include("./partials/nav.ejs") %>
+    <div class="container" style="max-width: 700px;">
+        <div class="center full-w cover mt-4">
+            <img src="<%= locals.blog_cover %>" class="full-w" alt="Blog Cover">
+        </div>
+        <h1 class="center full-w mt-4 blogtitle"><%= locals.blog_title %></h1>
+        <div class="blogdetails row mt-4">
+            <p><%= locals.blog_author %></p>
+            <p>Date: <%= locals.blog_date %></p>
+        </div>
+        <div class="body full-w mt-2 pb-4">
+            <p><%= locals.blog_body %></p>
+        </div>
+    </div>
+    <%- include("./partials/cscripts.ejs") %>
+</body>
+</html>

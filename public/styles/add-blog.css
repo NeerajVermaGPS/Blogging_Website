@@ -41,3 +41,31 @@ textarea {
     bottom: 20px;
     right: 20px;
 }
+
+.blogdetails {
+    justify-content: space-between;
+    font-size: 13px;
+    color: gray;
+}
+.blogtitle {
+    font-size: 27px;
+    text-align: center;
+}
+
+.blogdetails p {
+    width: fit-content;
+}
+.body {
+    text-align: justify;
+    font-size: 14px;
+}
+.cover {
+    max-height: 300px;
+    overflow: hidden;
+}
+
+@media only screen and (max-width: 500px) {
+    .blogtitle {
+        font-size: 20px;
+    }
+}

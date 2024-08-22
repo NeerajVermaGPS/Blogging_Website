@@ -7,10 +7,41 @@
 </head>
 <body data-bs-theme="dark">
     <%- include("./partials/nav.ejs") %>
-    <%= locals.user %>
-    <footer>
-        <div id="disclaimer" class="center full-w">© Neeraj Verma 2024</div>
-    </footer>
+    <div class="container center mt-4">
+        <div class="card m-2 mb-3 featured-card">
+            <div class="row g-0">
+              <div class="col-md-4 blogcover" style="background-image: url('<%= blogs[blogs.length - 1].coverImage %>');"></div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title"><%= blogs[blogs.length - 1].title %></h5>
+                  <p class="card-text"><%= blogs[blogs.length - 1].body.slice(0, 200) %>...</p>
+                  <p class="card-text mb-1">Author: <%= blogs[blogs.length - 1].author %></p>
+                  <p class="card-text" style="display: flex; align-items: center;"><span class="badge me-2 text-bg-warning">Latest</span><small class="text-body-secondary">Added a few mins ago</small></p>
+                  <a href="/blogs/<%= blogs[blogs.length - 1]._id %>" class="btn btn-primary">Read</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% if (locals.blogs) { %>
+            <% blogs.forEach((blog, i) => { if(i === blogs.length - 1) return;%>
+                <div class="card m-2" style="width: 18rem;">
+                    <div class="card-img-top full-w center" style="background-image: url('<%= blog.coverImage %>');"></div>
+                    <div class="card-body">
+                      <h4 class="card-title"><%= blog.title.slice(0, 20) %>...</h4>
+                      <div class="full-w blogdetails mb-2 center">
+                          <h6 class="card-text m-0"><%= blog.author %></h6>
+                          <h6 class="card-text m-0"><%= blog.postedAt %></h6>
+                      </div>
+                      <p class="card-text"><%= blog.body.slice(0, 150) %>...</p>
+                      <a href="/blogs/<%= blog._id %>" class="btn btn-primary">Read</a>
+                    </div>
+                </div>
+            <% }) %>
+        <% } else { %>
+            <div style="color: crimson; font-size: 14px;">No blogs available currently!</div>
+        <% } %>
+    </div>
+    <%- include("./partials/footer.ejs") %>
     <%- include("./partials/cscripts.ejs") %>
 </body>
 </html>
