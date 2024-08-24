@@ -72,6 +72,10 @@ a {
   top: 0;
   left: 0;
 }
+.text-center {
+  text-align: center;
+}
+
 .text_overflow {
   text-overflow: ellipsis;
   overflow: hidden; 
@@ -152,4 +156,17 @@ section {
   color: "#828282";
   font-size: 12px;
   padding: 20px 0;
+}
+
+.ddm {
+  top: 120% !important;
+  right: 0 !important;
+  left: auto !important;
+}
+
+@media only screen and (max-width: 576px) {
+  .ddm {
+    right: auto !important;
+    left: 0 !important;
+  }
 }

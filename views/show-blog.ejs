@@ -12,14 +12,80 @@
             <img src="<%= locals.blog_cover %>" class="full-w" alt="Blog Cover">
         </div>
         <h1 class="center full-w mt-4 blogtitle"><%= locals.blog_title %></h1>
-        <div class="blogdetails row mt-4">
-            <p><%= locals.blog_author %></p>
+        <div class="blogdetails center mt-4">
+            <div id="authordetail" class="center">
+                <img src="<%= locals.author_image %>" alt="profileImage" class="me-2" style="height: 25px;">
+                <p class="m-0"><%= locals.blog_author %></p>
+            </div>
             <p>Date: <%= locals.blog_date %></p>
         </div>
         <div class="body full-w mt-2 pb-4">
-            <p><%= locals.blog_body %></p>
+            <pre><%= locals.blog_body %></pre>
+        </div>
+
+        <!-- Comment section -->
+        <div class="full-w p-0 pb-4 m-0">
+            <div>
+                <h3>Comments</h3>
+                <hr />
+                <!-- Add comment -->
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Leave a comment</h5>
+                        <hr />
+                        <form id="comment_form" method="post" action="/blogs/comments/<%= locals.blog_id %>">
+                            <div class="form-group">
+                                <textarea rows="3" class="form-control" placeholder="Enter your comment here..." style="resize: none;" id="comment" name="comment"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-outline-primary btn-block mt-2">Comment</button>
+                        </form>
+                    </div>
+                </div>
+                <!-- Comments -->
+                <% if (locals.comments) { %>
+                    <div class="wrapper pt-3">
+                    <% comments.forEach(comment => { %>
+                        <div class="comment border rounded-1 p-2">
+                            <div class="my-2">
+                                <div class="content">
+                                    <div class="avatar"><img src="<%= comment.user.profileImage %>"></div>
+                                    <div class="content-comment">
+                                        <div class="user">
+                                            <h5 class="m-0"><%= comment.user.name %></h5>
+                                            <span class="is-mute"><%= comment.postedAt %></span>
+                                        </div>
+                                        <p class="m-0"><%= comment.comment %></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <% }) %>
+                    </div>
+                <% } %>
+            </div>
         </div>
     </div>
+    <%- include("./partials/footer.ejs") %>
     <%- include("./partials/cscripts.ejs") %>
+    <script>
+        let isLoggedIn = document.getElementById("userLogIn").innerHTML.trim() === "Login" ? false : true
+        let commentText = document.querySelector("#comment");
+
+        if(isLoggedIn) {
+          let savedCommentData = sessionStorage.getItem('savedCommentData');
+          if (savedCommentData) {
+              sessionStorage.removeItem('savedCommentData');
+              savedCommentData = JSON.parse(savedCommentData)
+              commentText.value = savedCommentData.comment
+          }
+        }
+
+        document.getElementById("comment_form").addEventListener("submit", (e) => {
+          const savedCommentData = {
+            comment: commentText.value
+          }
+          sessionStorage.setItem("savedCommentData", JSON.stringify(savedCommentData))
+        })
+    </script>
 </body>
 </html>

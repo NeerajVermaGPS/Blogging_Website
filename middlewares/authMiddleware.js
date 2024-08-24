@@ -19,7 +19,8 @@ const checkUserForAuthorization = (userType = [], renderPage) => {
     return (req, res, next) => {
         const {user} = req;
         if(!user) {
-            return res.redirect("/login")
+            const returnTo = req.originalUrl; 
+            return res.redirect(`/login?returnTo=${encodeURIComponent(returnTo)}`);
         }
         if(!userType.includes(user.role)) {
             return res.render(renderPage, {

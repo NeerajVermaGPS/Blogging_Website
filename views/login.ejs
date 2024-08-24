@@ -31,5 +31,16 @@
       </div>
     </div>
     <%- include("./partials/cscripts.ejs") %>
+    <script>
+      const urlParams = new URLSearchParams(window.location.search);
+      const returnTo = urlParams.get('returnTo');
+      if (returnTo) {
+        if(returnTo === "/blogs/addblog"){
+          sessionStorage.setItem('returnTo', '/add-blog');
+        } else {
+          sessionStorage.setItem('returnTo', returnTo.split("/comments").join(""));
+        }
+      }
+    </script>
 </body>
 </html>

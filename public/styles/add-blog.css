@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
@@ -55,13 +56,72 @@ textarea {
 .blogdetails p {
     width: fit-content;
 }
-.body {
+.body pre{
     text-align: justify;
     font-size: 14px;
+    font-family: "alexandria";
+    text-wrap: wrap;
 }
 .cover {
     max-height: 300px;
     overflow: hidden;
+}
+
+.comment-header {
+    width: fit-content;
+}
+
+.wrapper {
+	display: flex;
+    font-family: "Inter";
+	flex-direction: column;
+    row-gap: 25px;
+	.comment {
+		display: grid;
+		gap: 20px;
+		.content {
+			display: grid;
+			grid-template-columns: auto 1fr 0px;
+			align-items: flex-start;
+			gap: 16px;
+			flex: 1;
+			.avatar {
+				height: 48px;
+				width: 48px;
+				img {
+					max-width: 100%;
+					border-radius: 999px;
+					object-fit: cover;
+				}
+			}
+			.content-comment {
+				flex: 1;
+				display: block;
+				.user {
+					gap: 12px;
+					margin-bottom: 6px;
+					align-items: center;
+					display: flex;
+				}
+                h5 {
+                    color: white;
+                    font-weight: 500;
+                    font-size: 16px;
+                    line-height: 24px;
+                }
+                p {
+                    font-size: 13px;
+                }
+			}
+		}
+	}
+}
+.is-mute {
+	font-size: 12px;
+	line-height: 16px;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+	color: #969696;
 }
 
 @media only screen and (max-width: 500px) {

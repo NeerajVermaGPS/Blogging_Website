@@ -42,6 +42,10 @@
     white-space: nowrap;
 }
 
+.blogbody {
+    height: 100px;
+}
+
 @media only screen and (max-width: 992px) {
     .featured-card {
         max-width: 592px;

@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary bg-dark border-bottom border-body" data-bs-theme="dark">
+<nav class="navbar navbar-expand-sm bg-body-tertiary bg-dark border-bottom border-body" data-bs-theme="dark">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">
         <img src="/assets/logo.png" alt="Logo" height="30" class="d-inline-block align-text-top" style="filter: invert(1);">
@@ -7,43 +7,42 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <ul class="navbar-nav me-auto mb-2 mb-sm-0">
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="/">Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/add-blog">Add Blog</a>
           </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <% if (locals.user) { %>
-                <%= user %>
-              <% } else { %>
-                Login
-              <% } %>
-            </a>
-            <ul class="dropdown-menu">
-              <li><div class="dropdown-item">Hii 
-                  <% if (locals.user) { %>
-                    <%= user %>
-                  <% } else { %>
-                    there
-                  <% } %>
-                  </div></li>
-              <li><hr class="dropdown-divider"></li>
-              <% if (locals.user) { %>
-                <li><a class="dropdown-item" href="/user/logout">Logout</a></li>
-              <% } else { %>
-                <li><a class="dropdown-item" href="/login">Login</a></li>
-                <li><a class="dropdown-item" href="/signup">Signup</a></li>
-              <% } %>
-            </ul>
+          <li class="">
+            
           </li>
         </ul>
-        <form class="d-flex" role="search">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
+        <div class="d-flex nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" id="userLogIn">
+            <% if (locals.user) { %>
+              <%= user %>
+            <% } else { %>
+              Login
+            <% } %>
+          </a>
+          <ul class="dropdown-menu ddm">
+            <li><div class="dropdown-item">Hii 
+                <% if (locals.user) { %>
+                  <%= user %>
+                <% } else { %>
+                  there
+                <% } %>
+                </div></li>
+            <li><hr class="dropdown-divider"></li>
+            <% if (locals.user) { %>
+              <li><a class="dropdown-item" href="/user/logout">Logout</a></li>
+            <% } else { %>
+              <li><a class="dropdown-item" href="/login">Login</a></li>
+              <li><a class="dropdown-item" href="/signup">Signup</a></li>
+            <% } %>
+          </ul>
+        </div>
       </div>
     </div>
 </nav>

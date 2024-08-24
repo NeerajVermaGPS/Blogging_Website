@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <%- include("./partials/head.ejs") %>
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="/styles/add-blog.css" />
     <title>Add new blog</title>
   </head>
@@ -10,7 +11,7 @@
     <div class="full-w center column form_ctnr">
       <h1>Add Blogs</h1>
       <% if (locals.error) { %>
-        <div class="mt-4" style="color: crimson;"><%= error %></div>
+        <div class="mt-2" style="color: crimson;"><%= error %></div>
       <% } %>
       <form id="blog_form" class="row m-2" method="post" action="/blogs/addblog" enctype="multipart/form-data">
         <div class="col-md-4">
@@ -28,20 +29,44 @@
             <textarea class="form-control" id="body" name="body" maxlength="3000"><% if (locals.blog_body) { %><%= blog_body %><% } %></textarea>
             <div class="charCount"><span id="charCount">0</span>/3000</div>
         </div>
-        <div class="m-1 center post_btn">
+        <div class="m-0 mt-3 center post_btn">
             <button type="submit" class="btn btn-primary post_btn_btn">Post Blog</button>
         </div>
       </form>
     </div>
+    <%- include("./partials/footer.ejs") %>
     <%- include("./partials/cscripts.ejs") %>
     <script>
+        let isLoggedIn = document.getElementById("userLogIn").innerHTML.trim() === "Login" ? false : true
         let blogText = document.querySelector("#body");
+        let titleText = document.querySelector("#title");
+
+        if(isLoggedIn) {
+          let savedBlogData = sessionStorage.getItem('savedBlogData');
+          if (savedBlogData) {
+              sessionStorage.removeItem('savedBlogData');
+              savedBlogData = JSON.parse(savedBlogData)
+              titleText.value = savedBlogData.title
+              blogText.value = savedBlogData.body
+          }
+        }
+
+        document.getElementById("blog_form").addEventListener("submit", (e) => {
+          const savedBlogData = {
+            title: titleText.value,
+            body: blogText.value
+          }
+          sessionStorage.setItem("savedBlogData", JSON.stringify(savedBlogData))
+        })
+
         document.getElementById("charCount").innerText = blogText.value.length;
         function updateCharCount() {
             const charCount = blogText.value.length;
             document.getElementById("charCount").innerText = charCount;
         }
-        blogText.addEventListener('input', updateCharCount);
+        blogText.addEventListener('input', () => {
+          updateCharCount()
+        });
     </script>
   </body>
 </html>

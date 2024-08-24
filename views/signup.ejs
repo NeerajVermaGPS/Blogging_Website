@@ -11,7 +11,7 @@
         <div class="full-w center mb-4"><img src="/assets/logo.png" alt="Logo"></div>
         <h2>Sign Up</h2>
         <p>Create an account and start your journey.</p>
-        <form class="row g-3" method="post" action="/user/signup">
+        <form class="row g-3" id="signup_form" method="post" action="/user/signup" enctype="multipart/form-data">
           <div class="col-md-12">
             <label for="name" class="form-label">Name</label>
             <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name">
@@ -21,21 +21,15 @@
               <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email">
               <div id="emailHelp" class="form-text">We'll never share your email with anyone!</div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-12">
               <label for="password" class="form-label">Password</label>
               <input type="password" class="form-control" id="password" name="password" placeholder="Enter password">
             </div>
-            <div class="col-md-6">
-              <label for="inputPassword2" class="form-label">Re-enter password</label>
-              <input type="password" class="form-control" id="inputPassword2" placeholder="Re-enter your password">
-            </div>
             <div class="col-md-12">
-              <label for="inputProfileImage" class="form-label">Profile image</label>
-              <input type="file" class="form-control" id="inputProfileImage" placeholder="Upload profile image">
+              <label for="profileImage" class="form-label">Profile image</label>
+              <input type="file" class="form-control" id="profileImage" name="profileImage" placeholder="Upload profile image">
             </div>
-            <% if (locals.error) { %>
-              <div class="col-12 mt-4" style="color: crimson;"><%= error %></div>
-            <% } %>
+            <div class="col-12 mt-4" id="form-errors" style="color: crimson;"><% if (locals.error) { %><%= error %><% } %></div>
             <div class="col-12">
               <button type="submit" class="signup_btn">Sign up</button>
             </div>
@@ -44,5 +38,36 @@
       </div>
     </div>
     <%- include("./partials/cscripts.ejs") %>
+    <script>
+      const errorDiv = document.getElementById("form-errors")
+      document.getElementById('profileImage').addEventListener('change', function(event) {
+            errorDiv.innerText = ""
+            const file = event.target.files[0];
+            
+            if (file) {
+                const img = new Image();
+                img.src = URL.createObjectURL(file);
+                
+                img.onload = function() {
+                    const width = img.width;
+                    const height = img.height;
+                    
+                    if(height !== width) {
+                      errorDiv.innerText = "Profile image dimention ratio should be 1:1."
+                    }
+                    
+                    URL.revokeObjectURL(img.src);
+                };
+            }
+        });
+        document.getElementById("signup_form").addEventListener("submit", (e)=> {
+          if(errorDiv.innerText !== ""){
+            e.preventDefault()
+            throw new Error("Please recheck all details!")
+          } else {
+            e.target.submit()
+          }
+        })
+    </script>
 </body>
 </html>

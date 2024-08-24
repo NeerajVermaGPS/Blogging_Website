@@ -19,7 +19,7 @@ const userSchema = mongoose.Schema({
     },
     profileImage: {
         type: String,
-        default: "/assets/user_default.png"
+        default: "/assets/user_default.webp"
     },
     role: {
         type: String,
@@ -42,6 +42,6 @@ userSchema.static("validateLoginAndGenerateToken", async function (email, passwo
     return setTokenForUser(user)
 })
 
-const User = mongoose.model("User", userSchema)
+const User = mongoose.model("user", userSchema)
 
 module.exports = User

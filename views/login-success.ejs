@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include("./partials/head.ejs") %>
+    <title>Login Success</title>
+</head>
+<body data-bs-theme="dark">
+    <div class="center full-hw">
+        <div class="spinner-grow" style="width: 3rem; height: 3rem;" role="status">
+            <span>Loading...</span>
+        </div>
+    </div>
+    
+    <%- include("./partials/cscripts.ejs") %>
+    <script>
+        const returnTo = sessionStorage.getItem('returnTo');
+        if (returnTo) {
+            sessionStorage.removeItem('returnTo');
+            window.location.href = returnTo;
+        } else {
+            window.location.href = '/';
+        }
+    </script>
+</body>
+</html>
