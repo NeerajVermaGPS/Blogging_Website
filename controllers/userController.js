@@ -9,7 +9,7 @@ const handleUserSignup = async (req, res) => {
         try {
             let profileImage;
             try {
-                profileImage = `/uploads/${req.file.filename}`
+                profileImage = req.file.originalname
             } catch (error) {
                 profileImage = "/assets/user_default.webp"
             }

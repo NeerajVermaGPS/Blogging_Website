@@ -11,7 +11,7 @@ const handleAddBlog = async (req, res) => {
         try {
             let coverImage;
             try {
-                coverImage = `/uploads/${req.file.filename}`
+                coverImage = req.file.originalname
             } catch (error) {
                 coverImage = "/assets/blog_bg.jpg"
             }

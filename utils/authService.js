@@ -4,7 +4,7 @@ dotenv.config()
 
 const secret = process.env.JWT_SECRET
 
-const setTokenForUser = (user) => {
+const setTokenForUser = (user, expireTime) => {
     const payload = {
         _id: user._id,
         name: user.name,
@@ -13,7 +13,7 @@ const setTokenForUser = (user) => {
         role: user.role
     }
 
-    return jwt.sign(payload, secret)
+    return jwt.sign(payload, secret,  { expiresIn: expireTime })
 }
 
 const getUserFromToken = (token) => jwt.verify(token, secret)

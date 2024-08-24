@@ -39,7 +39,7 @@ userSchema.static("validateLoginAndGenerateToken", async function (email, passwo
     const user = await this.findOne({ email })
     if(!user) throw new Error("User not found!")
     if(!comparePassword(password, user.password)) throw new Error("Password is incorrect!")
-    return setTokenForUser(user)
+    return setTokenForUser(user, "2h")
 })
 
 const User = mongoose.model("user", userSchema)
