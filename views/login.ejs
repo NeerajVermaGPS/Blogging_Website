@@ -21,7 +21,7 @@
             <input type="password" class="form-control" id="password" name="password" placeholder="Enter password">
           </div>
           <% if (locals.error) { %>
-            <div class="col-12 mt-4" style="color: crimson;"><%= error %></div>
+            <div class="col-12 mt-4" style="color: crimson;"><%= locals.error %></div>
           <% } %>
           <div class="col-12">
             <button type="submit" class="signup_btn">Login</button>

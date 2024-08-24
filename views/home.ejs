@@ -11,7 +11,7 @@
         <h1 class="text-center mt-5 mb-3">Enjoy some freshness</h1>
         <h3 class="text-center fs-6">Discover, Share, and Connect Through Stories</h3>
         <div class="center my-4">
-          <a href="/blogs/<%= blogs[parseInt(Math.random()*blogs.length)]._id %>" class="me-2 btn btn-primary rounded-1 fs-6"><small>Read a random blog</small></a>
+          <a href="/blogs/<%= locals.blogs[parseInt(Math.random()*locals.blogs.length)]._id %>" class="me-2 btn btn-primary rounded-1 fs-6"><small>Read a random blog</small></a>
           <a href="/add-blog" class="me-2 btn btn-primary rounded-1 fs-6"><small>Start writing blog</small></a>
         </div>
     </div>
@@ -19,21 +19,21 @@
       <% if (locals.blogs) { %>
         <div class="card m-2 mb-3 featured-card">
           <div class="row g-0">
-            <div class="col-md-4 blogcover" style="background-image: url('<%= blogs[blogs.length - 1].coverImage %>');"></div>
+            <div class="col-md-4 blogcover" style="background-image: url('<%= locals.blogs[locals.blogs.length - 1].coverImage %>');"></div>
             <div class="col-md-8">
               <div class="card-body">
-                <h5 class="card-title"><%= blogs[blogs.length - 1].title %></h5>
-                <p class="card-text"><%= blogs[blogs.length - 1].body.slice(0, 200) %>...</p>
-                <p class="card-text mb-1">Author: <%= blogs[blogs.length - 1].author %></p>
+                <h5 class="card-title"><%= locals.blogs[locals.blogs.length - 1].title %></h5>
+                <p class="card-text"><%= locals.blogs[locals.blogs.length - 1].body.slice(0, 200) %>...</p>
+                <p class="card-text mb-1">Author: <%= locals.blogs[locals.blogs.length - 1].author %></p>
                 <p class="card-text" style="display: flex; align-items: center;"><span class="badge me-2 text-bg-warning">Latest</span><small class="text-body-secondary">Added a few mins ago</small></p>
-                <a href="/blogs/<%= blogs[blogs.length - 1]._id %>" class="btn btn-primary">Read</a>
+                <a href="/blogs/<%= locals.blogs[locals.blogs.length - 1]._id %>" class="btn btn-primary">Read</a>
               </div>
             </div>
           </div>
         </div> 
       <% } %>
         <% if (locals.blogs) { %>
-            <% blogs.forEach((blog, i) => { if(i === blogs.length - 1) return;%>
+            <% locals.blogs.forEach((blog, i) => { if(i === locals.blogs.length - 1) return;%>
                 <div class="card m-2" style="width: 18rem;">
                     <div class="card-img-top full-w center" style="background-image: url('<%= blog.coverImage %>');"></div>
                     <div class="card-body">
